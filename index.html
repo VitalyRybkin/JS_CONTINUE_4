@@ -1,0 +1,94 @@
+<input id="from" type="text">
+В инпуте написано: <span></span>
+
+<br>
+
+<button class="messageBtn">Показать блок</button>
+<div class="message">
+  Привет :)
+</div>
+
+<br>
+
+<form>
+  <label>
+    Первый инпут:
+    <input class="form-control" type="text">
+  </label>
+  <br>
+  <br>
+  <label>
+    Второй инпут:
+    <select class="form-control">
+      <option value=""></option>
+      <option value="1">Один</option>
+      <option value="2">Два</option>
+    </select>
+  </label>
+  <br>
+  <br>
+  <button>Отправить</button>
+</form>
+
+<script>
+    // 1. При изменении значения в input с id="from", значение содержащееся в нем должно моментально отображаться в span. То есть при печати в input'е тег span также должен меняться.
+    console.log('1. При изменении значения в input с id="from", значение содержащееся в нем должно моментально отображаться в span. То есть при печати в input"е тег span также должен меняться."')
+
+    const inputElem = document.querySelector("#from")
+    const spanElem = document.querySelector("span")
+    inputElem.addEventListener('keyup', function(event) {
+        spanElem.textContent = inputElem.value
+    })
+
+    // 2. При клике на кнопку с классом messageBtn необходимо элементу с классом message:
+    // - добавить два класса: animate_animated и animate_fadeInLeftBig
+    // - поставить данному элементу стиль visibility в значение 'visible'.
+
+    console.log('2. При клике на кнопку с классом messageBtn необходимо элементу с классом message: \n - добавить два класса: animate_animated и animate_fadeInLeftBig; \n - поставить данному элементу стиль visibility в значение "visible".')
+
+    const buttonElem = document.querySelector('.messageBtn')
+    buttonElem.classList.add('animate_animated', 'animate_fadeInLeftBig')
+    console.log(buttonElem.classList.contains('animate_animated'))
+    console.log(buttonElem.classList.contains('animate_fadeInLeftBig'))
+    buttonElem.style.visibility = 'visible'
+    console.log(buttonElem.style.visibility )
+
+    // 3. Необходимо при отправке формы проверить, заполнены ли все поля в этой форме. Если какое-либо поле не заполнено, форма не должна отправляться, 
+    // также должны быть подсвечены незаполненные поля (необходимо поставить класс error незаполненным полям). Как только пользователь начинает заполнять какое-либо поле, необходимо, при вводе в данное поле, произвести проверку:
+    // - Если поле пустое, необходимо данное поле подсветить (поставить класс error данному полю).
+    // - Если поле было чем-либо заполнено, подсветку (класс error) необходимо убрать.
+
+    console.log("3. Необходимо при отправке формы проверить, заполнены ли все поля в этой форме. Если какое-либо поле не заполнено, форма не должна отправляться, также должны быть подсвечены незаполненные поля (необходимо поставить класс error незаполненным полям). Как только пользователь начинает заполнять какое-либо поле, необходимо, при вводе в данное поле, произвести проверку: \n - Если поле пустое, необходимо данное поле подсветить (поставить класс error данному полю). \n - Если поле было чем-либо заполнено, подсветку (класс error) необходимо убрать.")
+
+    const sendBtnElem = document.querySelector("form button")
+    const inputArr = document.querySelectorAll(".form-control")
+    const formToSubmit = document.querySelector("form")
+    const sendForm = true
+
+    formToSubmit.addEventListener("submit", function(event) {
+      inputArr.forEach(element => {
+        if (element.value == "") {
+          element.style.backgroundColor = "lightgrey"
+          element.classList.add("error")
+          event.preventDefault()
+        }
+      });
+    })
+
+      // ВТОРАЯ ЧАСТЬ 3-го ЗАДАНИЯ НЕПОНЯТНА!!!!!!!
+
+    inputArr.forEach(element => {
+      element.addEventListener("focus", (event) => {
+        if (event.target.value == "") {
+          event.target.style.backgroundColor = "lightgrey"
+          element.classList.add("error")
+        }
+        else {
+          event.target.style.backgroundColor = ""
+          element.classList.remove("error")
+        }
+      })
+    });
+  
+
+</script>
